@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCHÖNDELL — Senior Software Architecture &amp; Consulting</title>
+    <meta name="description" content="Senior Software Architect &amp; Full-Stack Developer. 35+ years of enterprise engineering excellence. Cloud-native. AI-powered. Based in Marly, Fribourg, Switzerland.">
+    <meta property="og:title" content="SCHÖNDELL — Senior Software Architecture &amp; Consulting">
+    <meta property="og:description" content="35+ years of engineering excellence. AI-powered. Cloud-native. Angular · .NET Core · Azure.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================================
+           TOKENS & RESET
+        ============================================================ */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg:           #06060F;
+            --bg-1:         #0B0B18;
+            --bg-2:         #101022;
+            --card:         rgba(255,255,255,0.028);
+            --card-hover:   rgba(255,255,255,0.05);
+            --border:       rgba(255,255,255,0.075);
+            --border-glow:  rgba(0,196,224,0.28);
+            --text:         #E6E6F2;
+            --text-2:       #9090B4;
+            --text-3:       #4E4E80;
+            --accent:       #00C4E0;
+            --accent-light: #60E4F8;
+            --gold:         #C4965A;
+            --font-d:       'Syne', sans-serif;
+            --font-b:       'DM Sans', sans-serif;
+            --font-m:       'JetBrains Mono', monospace;
+            --r:            8px;
+            --rl:           16px;
+            --shadow:       0 8px 40px rgba(0,0,0,0.5);
+            --glow:         0 0 48px rgba(0,196,224,0.14);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-b);
+            font-weight: 300;
+            line-height: 1.72;
+            overflow-x: hidden;
+        }
+
+        /* Precision grid */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.016) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.016) 1px, transparent 1px);
+            background-size: 72px 72px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ============================================================
+           NAVIGATION
+        ============================================================ */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.2rem 2.5rem;
+            background: rgba(6,6,15,0.65);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--border);
+            transition: background 0.3s;
+        }
+
+        .nav-logo {
+            font-family: var(--font-d);
+            font-weight: 800;
+            font-size: 1.05rem;
+            letter-spacing: 0.18em;
+            color: var(--text);
+            text-decoration: none;
+        }
+        .nav-logo .umlaut { color: var(--accent); }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--text-2);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--accent); }
+
+        .lang-switch {
+            display: flex;
+            gap: 0.35rem;
+            padding-left: 2rem;
+            border-left: 1px solid var(--border);
+        }
+
+        .lang-btn {
+            font-family: var(--font-m);
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            padding: 0.28rem 0.6rem;
+            border-radius: 4px;
+            text-decoration: none;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+        .lang-btn.active {
+            color: var(--accent);
+            border-color: var(--border-glow);
+            background: rgba(0,196,224,0.07);
+        }
+        .lang-btn:not(.active) { color: var(--text-3); }
+        .lang-btn:not(.active):hover { color: var(--text-2); }
+
+        /* ============================================================
+           HERO
+        ============================================================ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 9rem 2rem 6rem;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 90% 70% at 15% 30%, rgba(0,80,130,0.32) 0%, transparent 55%),
+                radial-gradient(ellipse 70% 60% at 85% 70%, rgba(0,50,110,0.25) 0%, transparent 55%),
+                radial-gradient(ellipse 120% 100% at 50% 50%, rgba(0,25,70,0.18) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .hero-orb {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(0,196,224,0.07) 0%, transparent 68%);
+            pointer-events: none;
+            animation: breathe 5s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50%       { opacity: 1;   transform: translate(-50%, -50%) scale(1.12); }
+        }
+
+        .hero-eyebrow {
+            font-family: var(--font-m);
+            font-size: 0.7rem;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.75rem;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeUp 0.9s ease 0.15s forwards;
+        }
+        .hero-eyebrow::before,
+        .hero-eyebrow::after {
+            content: '—';
+            margin: 0 0.8rem;
+            opacity: 0.4;
+        }
+
+        .hero-title {
+            font-family: var(--font-d);
+            font-weight: 800;
+            font-size: clamp(4rem, 13vw, 11rem);
+            letter-spacing: -0.025em;
+            line-height: 0.88;
+            background: linear-gradient(140deg, #F2F2FF 0%, #B0B8FF 35%, var(--accent) 65%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.75rem;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.3s forwards;
+        }
+
+        .hero-sub {
+            font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+            font-weight: 400;
+            color: var(--text-2);
+            max-width: 580px;
+            margin: 0 auto 0.9rem;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeUp 0.9s ease 0.5s forwards;
+        }
+
+        .hero-tagline {
+            font-family: var(--font-m);
+            font-size: 0.72rem;
+            color: var(--text-3);
+            letter-spacing: 0.18em;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeUp 0.9s ease 0.65s forwards;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeUp 0.9s ease 0.8s forwards;
+        }
+
+        .btn {
+            padding: 0.85rem 2rem;
+            font-family: var(--font-b);
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-decoration: none;
+            border-radius: var(--r);
+            border: 1px solid;
+            transition: all 0.28s ease;
+            display: inline-block;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: #030310;
+            border-color: var(--accent);
+            font-weight: 600;
+        }
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--accent);
+            box-shadow: var(--glow);
+        }
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-2);
+            border-color: var(--border);
+        }
+        .btn-ghost:hover {
+            border-color: var(--border-glow);
+            color: var(--accent);
+        }
+
+        .hero-location {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--font-m);
+            font-size: 0.66rem;
+            color: var(--text-3);
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            opacity: 0;
+            animation: fadeUp 0.9s ease 1.0s forwards;
+        }
+        .hero-location .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent);
+            flex-shrink: 0;
+            animation: blink 2.5s ease-in-out infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0.3; }
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ============================================================
+           TICKER
+        ============================================================ */
+        .ticker {
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            padding: 0.9rem 0;
+            background: rgba(0,196,224,0.03);
+            border-top: 1px solid rgba(0,196,224,0.07);
+            border-bottom: 1px solid rgba(0,196,224,0.07);
+        }
+
+        .ticker-track {
+            display: inline-flex;
+            white-space: nowrap;
+            animation: ticker 36s linear infinite;
+        }
+
+        .ticker-track:hover { animation-play-state: paused; }
+
+        @keyframes ticker {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+
+        .ticker-item {
+            font-family: var(--font-m);
+            font-size: 0.68rem;
+            color: var(--text-3);
+            letter-spacing: 0.18em;
+            padding: 0 1.6rem;
+        }
+        .ticker-item.hi { color: rgba(0,196,224,0.55); }
+
+        /* ============================================================
+           STATS BAND
+        ============================================================ */
+        .stats-band {
+            position: relative;
+            z-index: 1;
+            padding: 3rem 2rem;
+            background: var(--bg-1);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stats-inner {
+            max-width: 860px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat {
+            padding: 1rem;
+        }
+
+        .stat-num {
+            font-family: var(--font-d);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 0.6rem;
+        }
+
+        .stat-label {
+            font-size: 0.78rem;
+            font-weight: 400;
+            color: var(--text-2);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        /* ============================================================
+           SHARED SECTION STYLES
+        ============================================================ */
+        section { position: relative; z-index: 1; }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .sec-header { margin-bottom: 3.5rem; }
+
+        .sec-label {
+            display: block;
+            font-family: var(--font-m);
+            font-size: 0.66rem;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.8rem;
+        }
+
+        .sec-title {
+            font-family: var(--font-d);
+            font-size: clamp(2rem, 4.5vw, 3rem);
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.1;
+        }
+        .sec-title em { font-style: normal; color: var(--accent); }
+
+        /* Scroll reveals */
+        .reveal {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity 0.75s ease, transform 0.75s ease;
+        }
+        .reveal.in { opacity: 1; transform: translateY(0); }
+
+        /* ============================================================
+           ABOUT
+        ============================================================ */
+        .about { padding: 7rem 0; }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .about-text p {
+            color: var(--text-2);
+            font-size: 1.05rem;
+            line-height: 1.82;
+            margin-bottom: 1.25rem;
+        }
+        .about-text p strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .about-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+            margin-top: 2rem;
+        }
+
+        .chip {
+            font-family: var(--font-m);
+            font-size: 0.68rem;
+            padding: 0.32rem 0.7rem;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            color: var(--text-2);
+            background: var(--card);
+        }
+        .chip.hi {
+            border-color: var(--border-glow);
+            color: var(--accent);
+            background: rgba(0,196,224,0.06);
+        }
+
+        .pillars {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .pillar {
+            padding: 1.5rem 1.75rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-left: 2px solid var(--accent);
+            border-radius: 0 var(--rl) var(--rl) 0;
+            transition: all 0.3s ease;
+        }
+        .pillar:hover {
+            background: var(--card-hover);
+            border-left-color: var(--accent-light);
+            transform: translateX(6px);
+            box-shadow: var(--shadow);
+        }
+
+        .pillar-ico {
+            font-size: 1.25rem;
+            margin-bottom: 0.65rem;
+            display: block;
+        }
+
+        .pillar h3 {
+            font-family: var(--font-d);
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.03em;
+        }
+
+        .pillar p {
+            font-size: 0.85rem;
+            color: var(--text-2);
+            line-height: 1.65;
+        }
+
+        /* ============================================================
+           SERVICES
+        ============================================================ */
+        .services {
+            padding: 7rem 0;
+            background: var(--bg-1);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+
+        .svc-card {
+            padding: 2.25rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--rl);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.32s ease;
+        }
+
+        .svc-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--rl);
+            background: linear-gradient(135deg, rgba(0,196,224,0.05) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.32s;
+        }
+
+        .svc-card:hover {
+            border-color: var(--border-glow);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow), var(--glow);
+        }
+        .svc-card:hover::after { opacity: 1; }
+
+        .svc-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light), transparent);
+            opacity: 0;
+            transition: opacity 0.32s;
+        }
+        .svc-card:hover::before { opacity: 1; }
+
+        .svc-num {
+            font-family: var(--font-m);
+            font-size: 0.62rem;
+            color: var(--text-3);
+            letter-spacing: 0.22em;
+            margin-bottom: 1.25rem;
+        }
+
+        .svc-icon {
+            font-size: 2.2rem;
+            display: block;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .svc-card h3 {
+            font-family: var(--font-d);
+            font-size: 1.18rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.75rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .svc-card p {
+            font-size: 0.875rem;
+            color: var(--text-2);
+            line-height: 1.72;
+            position: relative;
+            z-index: 1;
+        }
+
+        .svc-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .svc-tag {
+            font-family: var(--font-m);
+            font-size: 0.6rem;
+            padding: 0.22rem 0.55rem;
+            border-radius: 3px;
+            background: rgba(0,196,224,0.06);
+            color: var(--accent);
+            border: 1px solid rgba(0,196,224,0.14);
+            letter-spacing: 0.06em;
+        }
+
+        /* ============================================================
+           TECH STACK
+        ============================================================ */
+        .stack { padding: 7rem 0; }
+
+        .stack-groups {
+            display: flex;
+            flex-direction: column;
+            gap: 2.75rem;
+        }
+
+        .stack-group h3 {
+            font-family: var(--font-m);
+            font-size: 0.65rem;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--text-3);
+            margin-bottom: 1rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+        }
+
+        .pill {
+            font-family: var(--font-m);
+            font-size: 0.78rem;
+            padding: 0.48rem 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            color: var(--text-2);
+            background: var(--card);
+            cursor: default;
+            transition: all 0.22s ease;
+        }
+        .pill:hover {
+            border-color: var(--border-glow);
+            color: var(--accent);
+            background: rgba(0,196,224,0.05);
+            transform: translateY(-2px);
+        }
+
+        .pill.feat {
+            border-color: rgba(0,196,224,0.22);
+            color: var(--accent);
+            background: rgba(0,196,224,0.06);
+        }
+
+        .pill.ai {
+            border-color: rgba(196,150,90,0.35);
+            color: var(--gold);
+            background: rgba(196,150,90,0.06);
+        }
+        .pill.ai:hover {
+            border-color: var(--gold);
+            background: rgba(196,150,90,0.1);
+            box-shadow: 0 0 22px rgba(196,150,90,0.15);
+        }
+
+        /* ============================================================
+           EXPERIENCE TIMELINE
+        ============================================================ */
+        .experience {
+            padding: 7rem 0;
+            background: var(--bg-1);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.7rem;
+            bottom: 1rem;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--accent), rgba(0,196,224,0.15), transparent);
+        }
+
+        .tl-item {
+            position: relative;
+            padding: 0 0 3.5rem 2.5rem;
+        }
+
+        .tl-item:last-child { padding-bottom: 0; }
+
+        .tl-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0.65rem;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            border: 2px solid var(--bg-1);
+            background: var(--accent);
+            box-shadow: 0 0 12px rgba(0,196,224,0.7);
+        }
+
+        .tl-item.dim::before {
+            background: var(--text-3);
+            box-shadow: none;
+        }
+
+        .tl-period {
+            font-family: var(--font-m);
+            font-size: 0.66rem;
+            color: var(--text-3);
+            letter-spacing: 0.18em;
+            margin-bottom: 0.4rem;
+        }
+
+        .tl-role {
+            font-family: var(--font-d);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.3rem;
+        }
+
+        .tl-org {
+            font-size: 0.875rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 0.9rem;
+        }
+
+        .tl-desc {
+            font-size: 0.875rem;
+            color: var(--text-2);
+            line-height: 1.75;
+            max-width: 680px;
+        }
+
+        .tl-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 1rem;
+        }
+
+        .tl-tag {
+            font-family: var(--font-m);
+            font-size: 0.62rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--text-2);
+        }
+
+        /* ============================================================
+           CONTACT
+        ============================================================ */
+        .contact {
+            padding: 8rem 0;
+            text-align: center;
+        }
+
+        .contact-inner { max-width: 680px; margin: 0 auto; }
+
+        .contact .sec-title {
+            font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+            margin: 0.5rem 0 1.25rem;
+        }
+
+        .contact-sub {
+            font-size: 1.05rem;
+            color: var(--text-2);
+            margin-bottom: 3.5rem;
+            line-height: 1.8;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.85rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--text-2);
+        }
+
+        .contact-row .cdot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .contact-row a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        .contact-row a:hover { opacity: 0.7; }
+
+        /* ============================================================
+           FOOTER
+        ============================================================ */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2rem 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copy {
+            font-family: var(--font-m);
+            font-size: 0.66rem;
+            color: var(--text-3);
+            letter-spacing: 0.1em;
+        }
+
+        .footer-links {
+            font-family: var(--font-m);
+            font-size: 0.66rem;
+            color: var(--text-3);
+            letter-spacing: 0.1em;
+        }
+        .footer-links a { color: var(--text-2); text-decoration: none; }
+        .footer-links a:hover { color: var(--accent); }
+
+        /* ============================================================
+           RESPONSIVE
+        ============================================================ */
+        @media (max-width: 900px) {
+            .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .services-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 720px) {
+            nav { padding: 1rem 1.5rem; }
+            .nav-links { display: none; }
+            .stats-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+            .footer-inner { flex-direction: column; gap: 0.75rem; text-align: center; }
+        }
+
+        @media (max-width: 480px) {
+            .hero { padding: 7rem 1.25rem 5rem; }
+            .hero-ctas { flex-direction: column; align-items: center; }
+            .contact-inner { padding: 0 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav id="nav">
+    <a href="#" class="nav-logo">SCH<span class="umlaut">Ö</span>NDELL</a>
+    <div class="nav-right">
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#stack">Stack</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="lang-switch">
+            <a href="index.html" class="lang-btn active">EN</a>
+            <a href="index-sv.html" class="lang-btn">SV</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-orb"></div>
+
+    <p class="hero-eyebrow">Software Architecture &amp; Consulting</p>
+    <h1 class="hero-title">SCHÖNDELL</h1>
+    <p class="hero-sub">Senior Software Architecture &amp; Full&#8209;Stack Development</p>
+    <p class="hero-tagline">35+ years of engineering excellence &nbsp;·&nbsp; AI&#8209;powered &nbsp;·&nbsp; Cloud&#8209;native</p>
+
+    <div class="hero-ctas">
+        <a href="#contact" class="btn btn-primary">Get in Touch</a>
+        <a href="#experience" class="btn btn-ghost">View Experience</a>
+    </div>
+
+    <div class="hero-location">
+        <span class="dot"></span>
+        Marly, Fribourg, Switzerland &nbsp;·&nbsp; Available for Consulting
+    </div>
+</section>
+
+<!-- ===== TICKER ===== -->
+<div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+        <span class="ticker-item hi">Angular</span><span class="ticker-item">·</span>
+        <span class="ticker-item hi">TypeScript</span><span class="ticker-item">·</span>
+        <span class="ticker-item hi">C# / .NET Core</span><span class="ticker-item">·</span>
+        <span class="ticker-item hi">Microsoft Azure</span><span class="ticker-item">·</span>
+        <span class="ticker-item">PostgreSQL</span><span class="ticker-item">·</span>
+        <span class="ticker-item">ASP.NET Core</span><span class="ticker-item">·</span>
+        <span class="ticker-item hi">Entity Framework Core</span><span class="ticker-item">·</span>
+        <span class="ticker-item">Redis</span><span class="ticker-item">·</span>
+        <span class="ticker-item">RabbitMQ</span><span class="ticker-item">·</span>
+        <span class="ticker-item hi">TDD</span><span class="ticker-item">·</span>
+        <span class="ticker-item">SOLID</span><span class="ticker-item">·</span>
+        <span class="ticker-item hi">GitHub Copilot</span><span class="ticker-item">·</span>
+        <span class="ticker-item">Docker</span><span class="ticker-item">·</span>
+        <span class="ticker-item">SignalR</span><span class="ticker-item">·</span>
+        <span class="ticker-item hi">Microservices</span><span class="ticker-item">·</span>
+        <span class="ticker-item">Clean Architecture</span><span class="ticker-item">·</span>
+        <span class="ticker-item">Azure DevOps</span><span class="ticker-item">·</span>
+        <!-- duplicate for seamless loop -->
+        <span class="ticker-item hi">Angular</span><span class="ticker-item">·</span>
+        <span class="ticker-item hi">TypeScript</span><span class="ticker-item">·</span>
+        <span class="ticker-item hi">C# / .NET Core</span><span class="ticker-item">·</span>
+        <span class="ticker-item hi">Microsoft Azure</span><span class="ticker-item">·</span>
+        <span class="ticker-item">PostgreSQL</span><span class="ticker-item">·</span>
+        <span class="ticker-item">ASP.NET Core</span><span class="ticker-item">·</span>
+        <span class="ticker-item hi">Entity Framework Core</span><span class="ticker-item">·</span>
+        <span class="ticker-item">Redis</span><span class="ticker-item">·</span>
+        <span class="ticker-item">RabbitMQ</span><span class="ticker-item">·</span>
+        <span class="ticker-item hi">TDD</span><span class="ticker-item">·</span>
+        <span class="ticker-item">SOLID</span><span class="ticker-item">·</span>
+        <span class="ticker-item hi">GitHub Copilot</span><span class="ticker-item">·</span>
+        <span class="ticker-item">Docker</span><span class="ticker-item">·</span>
+        <span class="ticker-item">SignalR</span><span class="ticker-item">·</span>
+        <span class="ticker-item hi">Microservices</span><span class="ticker-item">·</span>
+        <span class="ticker-item">Clean Architecture</span><span class="ticker-item">·</span>
+        <span class="ticker-item">Azure DevOps</span><span class="ticker-item">·</span>
+    </div>
+</div>
+
+<!-- ===== STATS BAND ===== -->
+<div class="stats-band">
+    <div class="stats-inner">
+        <div class="stat reveal">
+            <div class="stat-num" data-count="35">0</div>
+            <div class="stat-label">Years of Experience</div>
+        </div>
+        <div class="stat reveal">
+            <div class="stat-num" data-count="14">0</div>
+            <div class="stat-label">Years at Microsoft</div>
+        </div>
+        <div class="stat reveal">
+            <div class="stat-num">🇨🇭</div>
+            <div class="stat-label">Switzerland-based</div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== ABOUT ===== -->
+<section class="about" id="about">
+    <div class="container">
+        <div class="about-grid">
+
+            <div class="reveal">
+                <div class="sec-header">
+                    <span class="sec-label">// about</span>
+                    <h2 class="sec-title">Engineering<br><em>Excellence</em></h2>
+                </div>
+                <div class="about-text">
+                    <p>Per Schöndell is a <strong>Senior Software Architect and Full-Stack Developer</strong> with over 35 years of enterprise software engineering experience across Sweden, Ireland, and Switzerland.</p>
+                    <p>Currently serving as Senior Developer/Architect at the <strong>Swiss Federal Office for IT (BIT)</strong> in Bern — designing and delivering mission-critical register software for the Swiss Federal Office of Public Health, while mentoring the next generation of engineers.</p>
+                    <p>With <strong>14 formative years at Microsoft Ireland</strong>, a decade of cloud-native SaaS platform building, and senior contracts at BIS Basel, Roche Diagnostics, and AXPO Trading, Per brings Swiss precision and Scandinavian clarity to every architecture decision.</p>
+                </div>
+                <div class="about-chips">
+                    <span class="chip hi">Clean Architecture</span>
+                    <span class="chip hi">SOLID Principles</span>
+                    <span class="chip hi">TDD</span>
+                    <span class="chip">Scrum Leadership</span>
+                    <span class="chip">Enterprise Systems</span>
+                    <span class="chip">Team Mentoring</span>
+                    <span class="chip">AI-Augmented Dev</span>
+                </div>
+            </div>
+
+            <div class="pillars reveal">
+                <div class="pillar">
+                    <span class="pillar-ico">◈</span>
+                    <h3>Swiss Precision</h3>
+                    <p>Architecture rooted in simplicity, minimal coupling, and purposeful extensibility — built to endure, designed to evolve.</p>
+                </div>
+                <div class="pillar">
+                    <span class="pillar-ico">⬡</span>
+                    <h3>Cloud-Native First</h3>
+                    <p>Deep Azure expertise spanning microservices, IoT integration, messaging pipelines, and enterprise-grade CI/CD deployments.</p>
+                </div>
+                <div class="pillar">
+                    <span class="pillar-ico">✦</span>
+                    <h3>AI-Augmented</h3>
+                    <p>Harnessing GitHub Copilot, LLM-integrated workflows, and intelligent code review to deliver faster, higher-quality software.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="services" id="services">
+    <div class="container">
+        <div class="sec-header reveal">
+            <span class="sec-label">// services</span>
+            <h2 class="sec-title">What I <em>Deliver</em></h2>
+        </div>
+        <div class="services-grid">
+
+            <div class="svc-card reveal">
+                <div class="svc-num">01</div>
+                <span class="svc-icon">◈</span>
+                <h3>Software Architecture</h3>
+                <p>End-to-end system design for enterprise applications. Clean Architecture, microservices, domain-driven design, and API-first strategies that scale reliably.</p>
+                <div class="svc-tags">
+                    <span class="svc-tag">Clean Architecture</span>
+                    <span class="svc-tag">Microservices</span>
+                    <span class="svc-tag">DDD</span>
+                    <span class="svc-tag">API Design</span>
+                    <span class="svc-tag">Architecture Reviews</span>
+                </div>
+            </div>
+
+            <div class="svc-card reveal">
+                <div class="svc-num">02</div>
+                <span class="svc-icon">⬡</span>
+                <h3>Full-Stack Development</h3>
+                <p>Production-grade web applications with Angular/TypeScript frontends and C#/.NET Core backends — from greenfield projects to legacy modernisation.</p>
+                <div class="svc-tags">
+                    <span class="svc-tag">Angular 17+</span>
+                    <span class="svc-tag">.NET Core</span>
+                    <span class="svc-tag">TypeScript</span>
+                    <span class="svc-tag">REST WebAPI</span>
+                    <span class="svc-tag">EF Core</span>
+                </div>
+            </div>
+
+            <div class="svc-card reveal">
+                <div class="svc-num">03</div>
+                <span class="svc-icon">△</span>
+                <h3>Cloud Solutions (Azure)</h3>
+                <p>Azure-native deployments, IoT integrations, messaging pipelines, and scalable infrastructure using Service Fabric, Event Hubs, and Azure DevOps.</p>
+                <div class="svc-tags">
+                    <span class="svc-tag">Microsoft Azure</span>
+                    <span class="svc-tag">IoT Hub</span>
+                    <span class="svc-tag">Service Fabric</span>
+                    <span class="svc-tag">CI/CD</span>
+                    <span class="svc-tag">DevOps</span>
+                </div>
+            </div>
+
+            <div class="svc-card reveal">
+                <div class="svc-num">04</div>
+                <span class="svc-icon">✦</span>
+                <h3>AI-Assisted Development</h3>
+                <p>Accelerate your engineering with AI-augmented workflows: GitHub Copilot integration, LLM-powered code review, and intelligent automation pipelines.</p>
+                <div class="svc-tags">
+                    <span class="svc-tag">GitHub Copilot</span>
+                    <span class="svc-tag">LLM Integration</span>
+                    <span class="svc-tag">AI Code Review</span>
+                    <span class="svc-tag">AI Workflows</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ===== TECH STACK ===== -->
+<section class="stack" id="stack">
+    <div class="container">
+        <div class="sec-header reveal">
+            <span class="sec-label">// technology</span>
+            <h2 class="sec-title">Modern <em>Stack</em></h2>
+        </div>
+        <div class="stack-groups">
+
+            <div class="stack-group reveal">
+                <h3>Frontend</h3>
+                <div class="pills">
+                    <span class="pill feat">Angular 17+</span>
+                    <span class="pill feat">TypeScript</span>
+                    <span class="pill">Google Material</span>
+                    <span class="pill">HTML5</span>
+                    <span class="pill">CSS3</span>
+                    <span class="pill">SignalR</span>
+                    <span class="pill">RxJS</span>
+                </div>
+            </div>
+
+            <div class="stack-group reveal">
+                <h3>Backend</h3>
+                <div class="pills">
+                    <span class="pill feat">C# / .NET Core</span>
+                    <span class="pill feat">ASP.NET Core</span>
+                    <span class="pill feat">Entity Framework Core</span>
+                    <span class="pill">WebAPI REST</span>
+                    <span class="pill">IdentityServer</span>
+                    <span class="pill">Kestrel / NGINX</span>
+                </div>
+            </div>
+
+            <div class="stack-group reveal">
+                <h3>Cloud &amp; Infrastructure</h3>
+                <div class="pills">
+                    <span class="pill feat">Microsoft Azure</span>
+                    <span class="pill">Azure Service Fabric</span>
+                    <span class="pill">Azure IoT Hub</span>
+                    <span class="pill">Azure Event Hubs</span>
+                    <span class="pill">Cloud Foundry</span>
+                    <span class="pill">Linux / Ubuntu</span>
+                    <span class="pill">Docker</span>
+                </div>
+            </div>
+
+            <div class="stack-group reveal">
+                <h3>Databases &amp; Messaging</h3>
+                <div class="pills">
+                    <span class="pill feat">PostgreSQL</span>
+                    <span class="pill feat">SQL Server</span>
+                    <span class="pill">MongoDB</span>
+                    <span class="pill">Redis</span>
+                    <span class="pill">RabbitMQ</span>
+                    <span class="pill">Azure Service Bus</span>
+                </div>
+            </div>
+
+            <div class="stack-group reveal">
+                <h3>AI &amp; DevOps</h3>
+                <div class="pills">
+                    <span class="pill ai">GitHub Copilot</span>
+                    <span class="pill ai">LLM Integration</span>
+                    <span class="pill ai">AI Code Review</span>
+                    <span class="pill">Git</span>
+                    <span class="pill">Azure DevOps</span>
+                    <span class="pill">CI/CD Pipelines</span>
+                    <span class="pill">TDD</span>
+                    <span class="pill">Scrum / Kanban</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ===== EXPERIENCE ===== -->
+<section class="experience" id="experience">
+    <div class="container">
+        <div class="sec-header reveal">
+            <span class="sec-label">// experience</span>
+            <h2 class="sec-title">Select <em>History</em></h2>
+        </div>
+        <div class="timeline">
+
+            <div class="tl-item reveal">
+                <div class="tl-period">2019 — Present</div>
+                <div class="tl-role">Senior Software Developer / Architect</div>
+                <div class="tl-org">Bundesamt für Informatik und Telekommunikation (BIT), Bern</div>
+                <p class="tl-desc">Designing and developing mission-critical register software for the Swiss Federal Office of Public Health (BAG). Leading architecture decisions, Angular/TypeScript frontend, C# ASP.NET Core backend with EF Core and PostgreSQL on Cloud Foundry. Mentoring junior developers and leading SCRUM ceremonies in a German-language delivery context.</p>
+                <div class="tl-tech">
+                    <span class="tl-tag">Angular</span>
+                    <span class="tl-tag">TypeScript</span>
+                    <span class="tl-tag">C# / ASP.NET Core</span>
+                    <span class="tl-tag">EF Core</span>
+                    <span class="tl-tag">PostgreSQL</span>
+                    <span class="tl-tag">Cloud Foundry</span>
+                    <span class="tl-tag">SCRUM</span>
+                </div>
+            </div>
+
+            <div class="tl-item reveal">
+                <div class="tl-period">2016 — 2019</div>
+                <div class="tl-role">Founder &amp; Senior Developer / Architect</div>
+                <div class="tl-org">Schondell.com — resource-coordinate.com</div>
+                <p class="tl-desc">Built and operated a full-stack Azure-hosted SaaS platform with Angular frontend, .NET Core microservices backend, IoT GPS tracker integration via Azure IoT Hub, Redis caching, RabbitMQ messaging, and IdentityServer4 for auth. Full CI/CD via Azure DevOps.</p>
+                <div class="tl-tech">
+                    <span class="tl-tag">Angular</span>
+                    <span class="tl-tag">.NET Core</span>
+                    <span class="tl-tag">Azure</span>
+                    <span class="tl-tag">IoT Hub</span>
+                    <span class="tl-tag">Redis</span>
+                    <span class="tl-tag">RabbitMQ</span>
+                    <span class="tl-tag">IdentityServer4</span>
+                    <span class="tl-tag">Microservices</span>
+                </div>
+            </div>
+
+            <div class="tl-item reveal">
+                <div class="tl-period">2017 — 2018</div>
+                <div class="tl-role">Senior Software Developer (Contractor)</div>
+                <div class="tl-org">BIS Basel · Roche Diagnostics · AXPO Trading</div>
+                <p class="tl-desc">Three high-profile Swiss contracts: Credit Risk Management system architecture at the Bank for International Settlements; licensing platform development at Roche Diagnostics; and ETRM invoicing system for AXPO's US energy trading subsidiary — with Navision integration and Beacon trading system connectivity.</p>
+                <div class="tl-tech">
+                    <span class="tl-tag">C#</span>
+                    <span class="tl-tag">Angular</span>
+                    <span class="tl-tag">ASP.NET MVC</span>
+                    <span class="tl-tag">Oracle DB</span>
+                    <span class="tl-tag">Azure</span>
+                    <span class="tl-tag">RabbitMQ</span>
+                    <span class="tl-tag">NUnit</span>
+                </div>
+            </div>
+
+            <div class="tl-item dim reveal">
+                <div class="tl-period">2000 — 2014 &nbsp;[14 years]</div>
+                <div class="tl-role">Software Engineer / Team Lead</div>
+                <div class="tl-org">Microsoft Ireland — Office Online &amp; Azure</div>
+                <p class="tl-desc">14 years at Microsoft Ireland — from Office localisation tooling in C++ through to Azure-hosted search services and Office Online platform development. Grew from application developer to full-stack C# web developer shipping software to millions of users in 100+ languages. Worked closely with teams in Dublin and Redmond.</p>
+                <div class="tl-tech">
+                    <span class="tl-tag">C#</span>
+                    <span class="tl-tag">Azure</span>
+                    <span class="tl-tag">TypeScript</span>
+                    <span class="tl-tag">SQL Server</span>
+                    <span class="tl-tag">ASP.NET</span>
+                    <span class="tl-tag">Team Lead</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="contact" id="contact">
+    <div class="container">
+        <div class="contact-inner reveal">
+            <span class="sec-label">// contact</span>
+            <h2 class="sec-title">Let's <em>Build</em><br>Together</h2>
+            <p class="contact-sub">Available for senior consulting engagements, architecture reviews, and full-stack development projects in Switzerland and remotely.</p>
+            <div class="contact-details">
+                <div class="contact-row">
+                    <span class="cdot"></span>
+                    <span>Email: <a href="mailto:per@schondell.com">per@schondell.com</a></span>
+                </div>
+                <div class="contact-row">
+                    <span class="cdot"></span>
+                    <span>Location: Marly, Fribourg, Switzerland</span>
+                </div>
+                <div class="contact-row">
+                    <span class="cdot"></span>
+                    <span>Available for: Consulting &nbsp;·&nbsp; Architecture &nbsp;·&nbsp; Development</span>
+                </div>
+            </div>
+            <a href="mailto:per@schondell.com" class="btn btn-primary">Send a Message</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <div class="footer-inner">
+        <span class="footer-copy">© 2025 SCHÖNDELL &nbsp;·&nbsp; Marly, Fribourg, Switzerland</span>
+        <span class="footer-links">
+            <a href="index.html">EN</a> &nbsp;/&nbsp; <a href="index-sv.html">SV</a>
+        </span>
+    </div>
+</footer>
+
+<script>
+    /* ---- Scroll reveal ---- */
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((e, i) => {
+            if (e.isIntersecting) {
+                e.target.classList.add('in');
+                observer.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+        el.style.transitionDelay = `${(i % 4) * 0.09}s`;
+        observer.observe(el);
+    });
+
+    /* ---- Animated counters ---- */
+    function animCount(el, target, ms = 1800) {
+        let start = null;
+        const tick = (ts) => {
+            if (!start) start = ts;
+            const p = Math.min((ts - start) / ms, 1);
+            const ease = 1 - Math.pow(1 - p, 3);
+            el.textContent = Math.floor(ease * target) + '+';
+            if (p < 1) requestAnimationFrame(tick);
+            else el.textContent = target + '+';
+        };
+        requestAnimationFrame(tick);
+    }
+
+    const cntObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                const n = parseInt(e.target.dataset.count);
+                if (n) animCount(e.target, n);
+                cntObs.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('[data-count]').forEach(el => cntObs.observe(el));
+
+    /* ---- Nav background on scroll ---- */
+    window.addEventListener('scroll', () => {
+        document.getElementById('nav').style.background =
+            scrollY > 60 ? 'rgba(6,6,15,0.96)' : 'rgba(6,6,15,0.65)';
+    }, { passive: true });
+</script>
+</body>
+</html>

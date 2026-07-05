@@ -1,0 +1,33 @@
+# SCHONDELL
+
+SCHONDELL implements AI agents for companies and builds practical AI solutions that make processes visible and automate the work that matters.
+
+## Primary Website
+
+- https://schondell.com/
+- Swedish: https://schondell.com/index-sv.html
+- German: https://schondell.com/index-de.html
+- French: https://schondell.com/index-fr.html
+
+## What SCHONDELL Does
+
+- Implements AI agents for companies: email triage, quote drafting, document processing, case summarisation, internal knowledge search, and decision support — connected to existing tools via APIs and MCP, with human approval where it matters.
+- Visualises business processes so bottlenecks, handovers, manual work, and data gaps become clear.
+- Builds focused AI-enabled tools for quoting, scheduling, case handling, document workflows, reporting, knowledge search, and decision support.
+- Creates lean alternatives to oversized generic CRM or business systems.
+- Integrates existing tools, APIs, files, databases, and cloud services.
+- Provides senior software architecture and full-stack delivery.
+
+## Contact
+
+- Email: per@schondell.com
+- Location: Marly, Fribourg, Switzerland
+
+## Reference Projects
+
+- Resource Coordinate: https://www.resource-coordinate.com/
+- MyTripDiary: https://mytripdiary.com/
+- whenAtDo: https://whenatdo.com/
+- Tanto: https://tanto.ch/
+- SwissClassified: https://www.swissclassified.ch/
+- FJAMP: https://fjamp.com/

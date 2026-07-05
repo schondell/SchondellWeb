@@ -3,10 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SCHÖNDELL — Senior Mjukvaruarkitektur &amp; Konsulting</title>
-    <meta name="description" content="Senior mjukvaruarkitekt och fullstack-utvecklare. 35+ år av ingenjörsexcellens i företagsklass. Cloud-native. AI-driven. Baserad i Marly, Fribourg, Schweiz.">
-    <meta property="og:title" content="SCHÖNDELL — Senior Mjukvaruarkitektur &amp; Konsulting">
-    <meta property="og:description" content="35+ år av ingenjörsexcellens. AI-driven. Cloud-native. Angular · .NET Core · Azure.">
+    <title>SCHÖNDELL — AI-agenter för företag &amp; skräddarsydda AI-lösningar</title>
+    <meta name="description" content="Implementation av AI-agenter för företag. AI-agenter och praktisk automation som tar över verkligt arbete — med senior schweizisk mjukvaruarkitektur.">
+    <link rel="canonical" href="https://schondell.com/index-sv.html">
+    <link rel="alternate" hreflang="en" href="https://schondell.com/">
+    <link rel="alternate" hreflang="sv" href="https://schondell.com/index-sv.html">
+    <link rel="alternate" hreflang="de" href="https://schondell.com/index-de.html">
+    <link rel="alternate" hreflang="fr" href="https://schondell.com/index-fr.html">
+    <link rel="alternate" hreflang="x-default" href="https://schondell.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="SCHÖNDELL">
+    <meta property="og:title" content="SCHÖNDELL — AI-agenter för företag &amp; skräddarsydda AI-lösningar">
+    <meta property="og:description" content="Implementation av AI-agenter för företag. AI-agenter och praktisk automation som tar över verkligt arbete.">
+    <meta property="og:url" content="https://schondell.com/index-sv.html">
+    <meta property="og:image" content="https://schondell.com/assets/ai-business-solutions.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SCHÖNDELL — AI-agenter för företag &amp; skräddarsydda AI-lösningar">
+    <meta name="twitter:description" content="Implementation av AI-agenter för företag. AI-agenter och praktisk automation som tar över verkligt arbete.">
+    <meta name="twitter:image" content="https://schondell.com/assets/ai-business-solutions.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -93,12 +107,12 @@
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 2.5rem;
+            gap: 1.5rem;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.35rem;
             list-style: none;
         }
 
@@ -116,7 +130,7 @@
         .lang-switch {
             display: flex;
             gap: 0.35rem;
-            padding-left: 2rem;
+            padding-left: 1.2rem;
             border-left: 1px solid var(--border);
         }
 
@@ -457,6 +471,72 @@
             font-weight: 500;
         }
 
+        .solution-visual {
+            padding: 7rem 0;
+            background: linear-gradient(180deg, var(--bg) 0%, var(--bg-1) 100%);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .solution-visual-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .solution-copy .sec-header { margin-bottom: 1.5rem; }
+
+        .solution-copy p {
+            color: var(--text-2);
+            line-height: 1.78;
+            font-size: 1.02rem;
+            margin-bottom: 1rem;
+        }
+
+        .solution-points {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.85rem;
+            margin-top: 1.75rem;
+        }
+
+        .solution-point {
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.025);
+            border-radius: var(--r);
+            padding: 0.95rem 1rem;
+            font-family: var(--font-m);
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-2);
+        }
+
+        .solution-media {
+            position: relative;
+            border-radius: var(--rl);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            aspect-ratio: 16 / 9;
+            background: var(--card);
+        }
+
+        .solution-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .solution-media::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.05), rgba(0,196,224,0.12));
+            pointer-events: none;
+        }
+
         .about-chips {
             display: flex;
             flex-wrap: wrap;
@@ -627,6 +707,105 @@
             color: var(--accent);
             border: 1px solid rgba(0,196,224,0.14);
             letter-spacing: 0.06em;
+        }
+
+        /* ============================================================
+           REFERENCES
+        ============================================================ */
+        .references {
+            padding: 7rem 0;
+            background: var(--bg);
+        }
+
+        .references-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .ref-card {
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+            color: inherit;
+            text-decoration: none;
+            border: 1px solid var(--border);
+            border-radius: var(--rl);
+            overflow: hidden;
+            background: var(--card);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .ref-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-glow);
+            box-shadow: var(--shadow), var(--glow);
+        }
+
+        .ref-img {
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            background: var(--bg-1);
+        }
+
+        .ref-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.45s ease;
+        }
+
+        .ref-card:hover .ref-img img { transform: scale(1.04); }
+
+        .ref-body { padding: 1.25rem; }
+
+        .ref-kicker {
+            font-family: var(--font-m);
+            font-size: 0.62rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.65rem;
+        }
+
+        .ref-body h3 {
+            font-family: var(--font-d);
+            font-size: 1.05rem;
+            color: var(--text);
+            margin-bottom: 0.55rem;
+        }
+
+        .ref-body p {
+            color: var(--text-2);
+            font-size: 0.84rem;
+            line-height: 1.65;
+        }
+
+        .ref-link {
+            display: inline-block;
+            margin-top: 1rem;
+            font-family: var(--font-m);
+            font-size: 0.68rem;
+            color: var(--text-3);
+        }
+
+        .refs-cta {
+            margin-top: 2.25rem;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: var(--rl);
+            background: rgba(255,255,255,0.025);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.25rem;
+        }
+
+        .refs-cta p {
+            color: var(--text-2);
+            line-height: 1.6;
+            max-width: 650px;
         }
 
         /* ============================================================
@@ -841,6 +1020,83 @@
         }
         .contact-row a:hover { opacity: 0.7; }
 
+
+
+        .quote-form-wrap {
+            margin-top: 3rem;
+            text-align: left;
+            border: 1px solid var(--border);
+            border-radius: var(--rl);
+            background: rgba(255,255,255,0.028);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .quote-form-head { margin-bottom: 1.5rem; }
+        .quote-form-head h3 {
+            font-family: var(--font-d);
+            font-size: 1.25rem;
+            color: var(--text);
+            margin-bottom: 0.35rem;
+        }
+        .quote-form-head p {
+            color: var(--text-2);
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+        .quote-form {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+        }
+        .form-field { display: flex; flex-direction: column; gap: 0.35rem; }
+        .form-field.full { grid-column: 1 / -1; }
+        .form-field label {
+            font-family: var(--font-m);
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+        .form-field input,
+        .form-field select,
+        .form-field textarea {
+            width: 100%;
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            background: rgba(3,3,16,0.72);
+            color: var(--text);
+            font: inherit;
+            font-size: 0.9rem;
+            padding: 0.85rem 0.9rem;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .form-field textarea { min-height: 8rem; resize: vertical; }
+        .form-field input:focus,
+        .form-field select:focus,
+        .form-field textarea:focus {
+            border-color: var(--border-glow);
+            box-shadow: 0 0 0 3px rgba(0,196,224,0.08);
+        }
+        .quote-form-actions {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        .quote-form-note { color: var(--text-3); font-size: 0.8rem; }
+        .quote-form-note a { color: var(--accent); text-decoration: none; }
+        .quote-form-note a:hover { opacity: 0.75; }
+        .form-status {
+            grid-column: 1 / -1;
+            min-height: 1.3rem;
+            color: var(--gold);
+            font-size: 0.82rem;
+        }
+
         /* ============================================================
            FOOTER
         ============================================================ */
@@ -881,20 +1137,70 @@
         @media (max-width: 900px) {
             .about-grid { grid-template-columns: 1fr; gap: 3rem; }
             .services-grid { grid-template-columns: 1fr; }
+            .solution-visual-grid { grid-template-columns: 1fr; }
+            .references-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
 
         @media (max-width: 720px) {
-            nav { padding: 1rem 1.5rem; }
+            nav { padding: 0.9rem 1rem; }
+            .nav-logo { font-size: 0.82rem; letter-spacing: 0.12em; }
+            .nav-right { gap: 0.65rem; }
             .nav-links { display: none; }
+            .lang-switch { padding-left: 0.65rem; gap: 0.2rem; }
+            .lang-btn { font-size: 0.62rem; padding: 0.22rem 0.42rem; }
             .stats-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+            .solution-points { grid-template-columns: 1fr; }
+            .references-grid { grid-template-columns: 1fr; }
+            .refs-cta { flex-direction: column; align-items: flex-start; }
             .footer-inner { flex-direction: column; gap: 0.75rem; text-align: center; }
         }
 
         @media (max-width: 480px) {
             .hero { padding: 7rem 1.25rem 5rem; }
+            .hero-title { font-size: clamp(2rem, 8.7vw, 2.35rem); letter-spacing: 0; }
+            .hero-eyebrow { letter-spacing: 0.18em; line-height: 1.8; }
             .hero-ctas { flex-direction: column; align-items: center; }
+            .hero-location {
+                width: calc(100% - 2.5rem);
+                justify-content: center;
+                white-space: normal;
+                line-height: 1.5;
+                letter-spacing: 0.12em;
+            }
+            .contact-inner { padding: 0 0.5rem; }
+            .quote-form-wrap { padding: 1.25rem; }
+            .quote-form { grid-template-columns: 1fr; }
+            .quote-form-actions { align-items: stretch; }
+            .quote-form-actions .btn { width: 100%; text-align: center; }
         }
     </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "SCHÖNDELL",
+  "url": "https://schondell.com/index-sv.html",
+  "image": "https://schondell.com/assets/ai-business-solutions.png",
+  "email": "per@schondell.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Marly",
+    "addressRegion": "Fribourg",
+    "addressCountry": "CH"
+  },
+  "areaServed": [
+    "Switzerland",
+    "Europe"
+  ],
+  "serviceType": [
+    "AI agent implementation",
+    "AI business solutions",
+    "Business process automation",
+    "Custom business systems",
+    "Software architecture"
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -905,13 +1211,16 @@
         <ul class="nav-links">
             <li><a href="#about">Om mig</a></li>
             <li><a href="#services">Tjänster</a></li>
+            <li><a href="#references">Referenser</a></li>
             <li><a href="#stack">Teknologi</a></li>
             <li><a href="#experience">Erfarenhet</a></li>
             <li><a href="#contact">Kontakt</a></li>
         </ul>
         <div class="lang-switch">
-            <a href="index.html" class="lang-btn">EN</a>
+            <a href="./" class="lang-btn">EN</a>
             <a href="index-sv.html" class="lang-btn active">SV</a>
+            <a href="index-de.html" class="lang-btn">DE</a>
+            <a href="index-fr.html" class="lang-btn">FR</a>
         </div>
     </div>
 </nav>
@@ -921,14 +1230,14 @@
     <div class="hero-bg"></div>
     <div class="hero-orb"></div>
 
-    <p class="hero-eyebrow">Mjukvaruarkitektur &amp; Konsulting</p>
+    <p class="hero-eyebrow">AI-agenter &amp; AI-lösningar för företag</p>
     <h1 class="hero-title">SCHÖNDELL</h1>
-    <p class="hero-sub">Senior Mjukvaruarkitektur &amp; Fullstack&#8209;utveckling</p>
-    <p class="hero-tagline">35+ år av ingenjörsexcellens &nbsp;·&nbsp; AI&#8209;driven &nbsp;·&nbsp; Cloud&#8209;native</p>
+    <p class="hero-sub">Jag implementerar AI-agenter som tar över verkligt arbete från ert team — byggda på processer som först gjorts synliga.</p>
+    <p class="hero-tagline">AI-agentimplementationer &nbsp;·&nbsp; Processöverblick &nbsp;·&nbsp; Tydliga offerter</p>
 
     <div class="hero-ctas">
-        <a href="#contact" class="btn btn-primary">Kontakta mig</a>
-        <a href="#experience" class="btn btn-ghost">Visa erfarenhet</a>
+        <a href="mailto:per@schondell.com?subject=Offertf%C3%B6rfr%C3%A5gan%20AI-baserad%20aff%C3%A4rsl%C3%B6sning" class="btn btn-primary">Be om offert</a>
+        <a href="#services" class="btn btn-ghost">Utforska lösningar</a>
     </div>
 
     <div class="hero-location">
@@ -940,6 +1249,9 @@
 <!-- ===== TICKER ===== -->
 <div class="ticker" aria-hidden="true">
     <div class="ticker-track">
+        <span class="ticker-item hi">AI-agenter</span><span class="ticker-item">·</span>
+        <span class="ticker-item">Claude &amp; GPT</span><span class="ticker-item">·</span>
+        <span class="ticker-item hi">MCP</span><span class="ticker-item">·</span>
         <span class="ticker-item hi">Angular</span><span class="ticker-item">·</span>
         <span class="ticker-item hi">TypeScript</span><span class="ticker-item">·</span>
         <span class="ticker-item hi">C# / .NET Core</span><span class="ticker-item">·</span>
@@ -958,6 +1270,9 @@
         <span class="ticker-item">Clean Architecture</span><span class="ticker-item">·</span>
         <span class="ticker-item">Azure DevOps</span><span class="ticker-item">·</span>
         <!-- duplicate -->
+        <span class="ticker-item hi">AI-agenter</span><span class="ticker-item">·</span>
+        <span class="ticker-item">Claude &amp; GPT</span><span class="ticker-item">·</span>
+        <span class="ticker-item hi">MCP</span><span class="ticker-item">·</span>
         <span class="ticker-item hi">Angular</span><span class="ticker-item">·</span>
         <span class="ticker-item hi">TypeScript</span><span class="ticker-item">·</span>
         <span class="ticker-item hi">C# / .NET Core</span><span class="ticker-item">·</span>
@@ -990,11 +1305,36 @@
             <div class="stat-label">År på Microsoft</div>
         </div>
         <div class="stat reveal">
-            <div class="stat-num">🇨🇭</div>
-            <div class="stat-label">Schweizbaserad</div>
+            <div class="stat-num">AI</div>
+            <div class="stat-label">Agentimplementationer &amp; automation</div>
         </div>
     </div>
 </div>
+
+<!-- ===== SOLUTION VISUAL ===== -->
+<section class="solution-visual" id="ai-solutions">
+    <div class="container">
+        <div class="solution-visual-grid">
+            <div class="solution-copy reveal">
+                <div class="sec-header">
+                    <span class="sec-label">// ai-agenter</span>
+                    <h2 class="sec-title">AI-agenter som<br><em>utför verkligt arbete</em></h2>
+                </div>
+                <p>Den starkaste AI:n är inte en generisk chattbot. Det är en agent implementerad i företagets verkliga rytm: som sorterar e-post, tar fram offertutkast, behandlar dokument, svarar utifrån intern kunskap och driver ärenden framåt — kopplad till de verktyg ni redan använder.</p>
+                <p>Jag implementerar AI-agenter för företag hela vägen: kartlägger arbetsflödet, kopplar agenterna till era system via API:er och MCP, och behåller en människa i loopen där omdöme krävs.</p>
+                <div class="solution-points">
+                    <span class="solution-point">Agenter för e-post &amp; dokument</span>
+                    <span class="solution-point">Kopplade till era verktyg</span>
+                    <span class="solution-point">Mänskligt godkännande inbyggt</span>
+                    <span class="solution-point">Levererat i fokuserade steg</span>
+                </div>
+            </div>
+            <div class="solution-media reveal">
+                <img src="assets/ai-business-solutions.png" alt="AI-baserad affärsautomation med kopplade dashboards och arbetsflöden" loading="lazy">
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- ===== ABOUT ===== -->
 <section class="about" id="about">
@@ -1004,39 +1344,40 @@
             <div class="reveal">
                 <div class="sec-header">
                     <span class="sec-label">// om mig</span>
-                    <h2 class="sec-title">Ingenjörs&#8209;<br><em>excellens</em></h2>
+                    <h2 class="sec-title">Praktisk AI<br><em>som passar</em></h2>
                 </div>
                 <div class="about-text">
-                    <p>Per Schöndell är en <strong>senior mjukvaruarkitekt och fullstack-utvecklare</strong> med över 35 års erfarenhet av mjukvaruutveckling i företagsklass — i Sverige, Irland och Schweiz.</p>
-                    <p>För närvarande tjänstgör han som Senior Utvecklare/Arkitekt på <strong>Bundesamt für Informatik und Telekommunikation (BIT)</strong> i Bern — där han designar och levererar affärskritiska registersystem för schweiziska folkehälsokontoret, och mentorerar nästa generation av ingenjörer.</p>
-                    <p>Med <strong>14 år på Microsoft Irland</strong>, ett decennium av cloud-native SaaS-plattformar och seniora konsultuppdrag på BIS Basel, Roche Diagnostics och AXPO Trading — tar Per med sig schweizisk precision och skandinavisk tydlighet till varje arkitekturbeslut.</p>
+                    <p>Jag hjälper specialiserade företag i Schweiz att omvandla operativ friktion till fokuserad, AI-baserad mjukvara: offerter, planering, ärendehantering, intern kunskap, dokumentflöden, rapportering och de manuella steg som aldrig riktigt passar i en generisk plattform.</p>
+                    <p>I stället för att tvinga in er process i ett stort CRM- eller affärssystem bygger jag rätt lösning runt hur ert team faktiskt arbetar, och automatiserar dyr repetition med pragmatisk AI, tydliga dataflöden och pålitlig molnarkitektur.</p>
+                    <p>Bakom det praktiska arbetssättet finns <strong>35+ års erfarenhet av mjukvaruutveckling i företagsklass</strong>, inklusive <strong>14 år på Microsoft Irland</strong>, cloud-native SaaS-produkter och senior arkitektur för schweiziska organisationer som BIT, BIS Basel, Roche Diagnostics och AXPO Trading.</p>
                 </div>
                 <div class="about-chips">
-                    <span class="chip hi">Clean Architecture</span>
-                    <span class="chip hi">SOLID-principer</span>
-                    <span class="chip hi">TDD</span>
+                    <span class="chip hi">AI-agentimplementation</span>
+                    <span class="chip hi">AI för affärsautomation</span>
+                    <span class="chip hi">Alternativ till CRM</span>
+                    <span class="chip hi">Optimerade arbetsflöden</span>
                     <span class="chip">Scrum-ledning</span>
                     <span class="chip">Enterprise-system</span>
                     <span class="chip">Mentorskap</span>
-                    <span class="chip">AI-förstärkt dev</span>
+                    <span class="chip">Cloud-native leverans</span>
                 </div>
             </div>
 
             <div class="pillars reveal">
                 <div class="pillar">
                     <span class="pillar-ico">◈</span>
-                    <h3>Schweizisk precision</h3>
-                    <p>Arkitektur grundad i enkelhet, minimala beroenden och ändamålsenlig utbyggbarhet — byggd för att hålla, designad för att växa.</p>
+                    <h3>Rätt storlek på systemet</h3>
+                    <p>Skräddarsydda verktyg fokuserade på det affärsproblem ni faktiskt har, utan kostnaden och komplexiteten i en stor generisk plattform.</p>
                 </div>
                 <div class="pillar">
                     <span class="pillar-ico">⬡</span>
-                    <h3>Cloud-native från grunden</h3>
-                    <p>Djup Azure-expertis som sträcker sig från mikrotjänster och IoT till CI/CD-pipelines och enterprise-driftsättningar.</p>
+                    <h3>AI där den gör nytta</h3>
+                    <p>LLM-flöden, dataextraktion, sammanfattningar, beslutsstöd och automation används där de skapar mätbar nytta.</p>
                 </div>
                 <div class="pillar">
                     <span class="pillar-ico">✦</span>
-                    <h3>AI-förstärkt</h3>
-                    <p>Utnyttjar GitHub Copilot, LLM-integrerade arbetsflöden och AI-driven kodgranskning för snabbare mjukvara av högre kvalitet.</p>
+                    <h3>Byggt för att hålla</h3>
+                    <p>Senior arkitektur, rena integrationer och cloud-native leverans så att lösningen kan växa med verksamheten.</p>
                 </div>
             </div>
 
@@ -1049,65 +1390,149 @@
     <div class="container">
         <div class="sec-header reveal">
             <span class="sec-label">// tjänster</span>
-            <h2 class="sec-title">Vad jag <em>levererar</em></h2>
+            <h2 class="sec-title">Vad jag <em>löser</em></h2>
         </div>
         <div class="services-grid">
 
             <div class="svc-card reveal">
                 <div class="svc-num">01</div>
                 <span class="svc-icon">◈</span>
-                <h3>Mjukvaruarkitektur</h3>
-                <p>Helhetsdesign av mjukvarusystem i företagsklass. Clean Architecture, mikrotjänster, domändriven design och API-first-strategier som skalar tillförlitligt.</p>
+                <h3>Analys av affärsproblem</h3>
+                <p>Vi tydliggör flaskhalsen, kartlägger det verkliga arbetsflödet och hittar minsta AI- eller mjukvarulösning som snabbt kan skapa affärsvärde.</p>
                 <div class="svc-tags">
-                    <span class="svc-tag">Clean Architecture</span>
-                    <span class="svc-tag">Mikrotjänster</span>
-                    <span class="svc-tag">DDD</span>
-                    <span class="svc-tag">API-design</span>
-                    <span class="svc-tag">Arkitekturgranskningar</span>
+                    <span class="svc-tag">Processkartläggning</span>
+                    <span class="svc-tag">Automation</span>
+                    <span class="svc-tag">ROI-fokus</span>
+                    <span class="svc-tag">Arkitekturgranskning</span>
                 </div>
             </div>
 
             <div class="svc-card reveal">
                 <div class="svc-num">02</div>
                 <span class="svc-icon">⬡</span>
-                <h3>Fullstack-utveckling</h3>
-                <p>Produktionsfärdig webbutveckling med Angular/TypeScript-frontend och C#/.NET Core-backend — från greenfield-projekt till modernisering av legacy-system.</p>
+                <h3>Skräddarsydda affärssystem</h3>
+                <p>Slanka alternativ till stora CRM- och ERP-plattformar: portaler, dashboards, ärendeverktyg, planeringsflöden, offertsystem och interna verksamhetsappar.</p>
                 <div class="svc-tags">
-                    <span class="svc-tag">Angular 17+</span>
-                    <span class="svc-tag">.NET Core</span>
-                    <span class="svc-tag">TypeScript</span>
-                    <span class="svc-tag">REST WebAPI</span>
-                    <span class="svc-tag">EF Core</span>
+                    <span class="svc-tag">CRM-alternativ</span>
+                    <span class="svc-tag">Dashboards</span>
+                    <span class="svc-tag">Verksamhetsverktyg</span>
+                    <span class="svc-tag">Angular / .NET</span>
                 </div>
             </div>
 
             <div class="svc-card reveal">
                 <div class="svc-num">03</div>
                 <span class="svc-icon">△</span>
-                <h3>Molnlösningar (Azure)</h3>
-                <p>Azure-native driftsättningar, IoT-integrationer, meddelandepipelines och skalbar infrastruktur med Service Fabric, Event Hubs och Azure DevOps.</p>
+                <h3>Integration &amp; automation</h3>
+                <p>Koppla ihop befintliga verktyg, filer, data och människor i ett smidigare flöde med API:er, meddelanden, dokumentautomation och säkra molntjänster.</p>
                 <div class="svc-tags">
-                    <span class="svc-tag">Microsoft Azure</span>
-                    <span class="svc-tag">IoT Hub</span>
-                    <span class="svc-tag">Service Fabric</span>
-                    <span class="svc-tag">CI/CD</span>
-                    <span class="svc-tag">DevOps</span>
+                    <span class="svc-tag">API:er</span>
+                    <span class="svc-tag">Dokumentflöden</span>
+                    <span class="svc-tag">Dataflöden</span>
+                    <span class="svc-tag">Azure</span>
                 </div>
             </div>
 
             <div class="svc-card reveal">
                 <div class="svc-num">04</div>
                 <span class="svc-icon">✦</span>
-                <h3>AI-assisterad utveckling</h3>
-                <p>Accelerera er ingenjörsproduktion med AI-förstärkta arbetsflöden: Copilot-integration, LLM-driven kodgranskning och intelligenta automationspipelines.</p>
+                <h3>Implementation av AI-agenter</h3>
+                <p>Implementera AI-agenter som klassificerar förfrågningar, skriver svarsutkast, extraherar data, sammanfattar ärenden, söker i intern kunskap och agerar i er verkliga affärsprocess — med mänskligt godkännande där det är viktigt.</p>
                 <div class="svc-tags">
-                    <span class="svc-tag">GitHub Copilot</span>
-                    <span class="svc-tag">LLM-integration</span>
-                    <span class="svc-tag">AI-kodgranskning</span>
-                    <span class="svc-tag">AI-arbetsflöden</span>
+                    <span class="svc-tag">AI-agenter</span>
+                    <span class="svc-tag">MCP-integration</span>
+                    <span class="svc-tag">LLM-arbetsflöden</span>
+                    <span class="svc-tag">Kunskapssökning</span>
                 </div>
             </div>
 
+        </div>
+    </div>
+</section>
+
+<!-- ===== REFERENCES ===== -->
+<section class="references" id="references">
+    <div class="container">
+        <div class="sec-header reveal">
+            <span class="sec-label">// referenser</span>
+            <h2 class="sec-title">Utvalda <em>projekt</em></h2>
+        </div>
+        <div class="references-grid">
+            <a class="ref-card reveal" href="https://www.resource-coordinate.com" target="_blank" rel="noopener">
+                <div class="ref-img">
+                    <img src="assets/mockups/resource-coordinate.png" alt="Skärmbild av Resource Coordinate i produktram" loading="lazy">
+                </div>
+                <div class="ref-body">
+                    <div class="ref-kicker">SaaS-plattform</div>
+                    <h3>Resource Coordinate</h3>
+                    <p>Molnbaserad resurskoordinering, planering, kartflöden och operativ överblick.</p>
+                    <span class="ref-link">resource-coordinate.com</span>
+                </div>
+            </a>
+
+            <a class="ref-card reveal" href="https://mytripdiary.com" target="_blank" rel="noopener">
+                <div class="ref-img">
+                    <img src="assets/mockups/mytripdiary.png" alt="Skärmbild av MyTripDiary i produktram" loading="lazy">
+                </div>
+                <div class="ref-body">
+                    <div class="ref-kicker">Konsumentapp</div>
+                    <h3>MyTripDiary</h3>
+                    <p>Resedagbok, minnen, resekontext och personlig digital berättelse.</p>
+                    <span class="ref-link">mytripdiary.com</span>
+                </div>
+            </a>
+
+            <a class="ref-card reveal" href="https://whenatdo.com" target="_blank" rel="noopener">
+                <div class="ref-img">
+                    <img src="assets/mockups/whenatdo.png" alt="Produktförhandsvisning av whenAtDo i produktram" loading="lazy">
+                </div>
+                <div class="ref-body">
+                    <div class="ref-kicker">Planeringsapp</div>
+                    <h3>whenAtDo</h3>
+                    <p>Schemaläggning, uppgiftskoordinering och planeringsflöden utifrån när arbetet faktiskt sker.</p>
+                    <span class="ref-link">whenAtDo.com</span>
+                </div>
+            </a>
+
+            <a class="ref-card reveal" href="https://tanto.ch" target="_blank" rel="noopener">
+                <div class="ref-img">
+                    <img src="assets/mockups/tanto.png" alt="Skärmbild av Tanto i produktram" loading="lazy">
+                </div>
+                <div class="ref-body">
+                    <div class="ref-kicker">Schweizisk plattform</div>
+                    <h3>Tanto</h3>
+                    <p>Schweizisk webbnärvaro och digitalt plattformsarbete med professionellt tjänstefokus.</p>
+                    <span class="ref-link">tanto.ch</span>
+                </div>
+            </a>
+
+            <a class="ref-card reveal" href="https://www.swissclassified.ch" target="_blank" rel="noopener">
+                <div class="ref-img">
+                    <img src="assets/mockups/swissclassified.png" alt="Skärmbild av SwissClassified.ch i produktram" loading="lazy">
+                </div>
+                <div class="ref-body">
+                    <div class="ref-kicker">Kommer snart</div>
+                    <h3>SwissClassified.ch</h3>
+                    <p>Schweizisk marknadsplats för annonser under förberedelse, inkluderad som kommande referens.</p>
+                    <span class="ref-link">swissclassified.ch</span>
+                </div>
+            </a>
+
+            <a class="ref-card reveal" href="https://fjamp.com" target="_blank" rel="noopener">
+                <div class="ref-img">
+                    <img src="assets/mockups/fjamp.png" alt="Skärmbild av FJAMP i produktram" loading="lazy">
+                </div>
+                <div class="ref-body">
+                    <div class="ref-kicker">Webbplattform</div>
+                    <h3>FJAMP</h3>
+                    <p>Plattformstänk för integrationer, dataflöden, dashboards och automation.</p>
+                    <span class="ref-link">fjamp.com</span>
+                </div>
+            </a>
+        </div>
+        <div class="refs-cta reveal">
+            <p>Har ni en liknande affärsidé, ett arbetsflödesproblem eller en nischad plattform i åtanke? Skicka en kort beskrivning så återkommer jag med en fokuserad offert.</p>
+            <a href="mailto:per@schondell.com?subject=Offertf%C3%B6rfr%C3%A5gan%20skr%C3%A4ddarsydd%20AI-l%C3%B6sning" class="btn btn-primary">Be om offert</a>
         </div>
     </div>
 </section>
@@ -1174,6 +1599,9 @@
             <div class="stack-group reveal">
                 <h3>AI &amp; DevOps</h3>
                 <div class="pills">
+                    <span class="pill ai">AI-agenter</span>
+                    <span class="pill ai">Claude API</span>
+                    <span class="pill ai">MCP-servrar</span>
                     <span class="pill ai">GitHub Copilot</span>
                     <span class="pill ai">LLM-integration</span>
                     <span class="pill ai">AI-kodgranskning</span>
@@ -1272,22 +1700,34 @@
         <div class="contact-inner reveal">
             <span class="sec-label">// kontakt</span>
             <h2 class="sec-title">Låt oss <em>bygga</em><br>tillsammans</h2>
-            <p class="contact-sub">Tillgänglig för seniora konsultuppdrag, arkitekturgranskningar och fullstack-utvecklingsprojekt i Schweiz och på distans.</p>
+            <p class="contact-sub">Berätta vilken process som är långsam, manuell eller svår att överblicka. Jag föreslår en enkel AI-baserad lösning och återkommer med en praktisk offert.</p>
             <div class="contact-details">
-                <div class="contact-row">
-                    <span class="cdot"></span>
-                    <span>E-post: <a href="mailto:per@schondell.com">per@schondell.com</a></span>
-                </div>
-                <div class="contact-row">
-                    <span class="cdot"></span>
-                    <span>Plats: Marly, Fribourg, Schweiz</span>
-                </div>
-                <div class="contact-row">
-                    <span class="cdot"></span>
-                    <span>Tillgänglig för: Konsulting &nbsp;·&nbsp; Arkitektur &nbsp;·&nbsp; Utveckling</span>
-                </div>
+                <div class="contact-row"><span class="cdot"></span><span>E-post: <a href="mailto:per@schondell.com">per@schondell.com</a></span></div>
+                <div class="contact-row"><span class="cdot"></span><span>Plats: Marly, Fribourg, Schweiz</span></div>
+                <div class="contact-row"><span class="cdot"></span><span>Tillgänglig för: AI-agentimplementationer &nbsp;·&nbsp; Affärsautomation &nbsp;·&nbsp; Skräddarsydda system</span></div>
             </div>
-            <a href="mailto:per@schondell.com" class="btn btn-primary">Skicka ett meddelande</a>
+            <div class="quote-form-wrap">
+                <div class="quote-form-head"><h3>Snabb offertförfrågan</h3><p>Skicka några detaljer. Jag återkommer med en praktisk offert.</p></div>
+                <form class="quote-form" data-quote-form novalidate data-subject="Offertförfrågan AI-baserad affärslösning" data-required="Fyll i namn, e-post och problem innan du skickar." data-body-labels="Namn|Företag|E-post|Telefon|Problem|Budget|Tidplan|Detaljer">
+                    <div class="form-field"><label for="quote-name-sv">Namn</label><input id="quote-name-sv" name="name" type="text" autocomplete="name" placeholder="Ditt namn" required></div>
+                    <div class="form-field"><label for="quote-company-sv">Företag</label><input id="quote-company-sv" name="company" type="text" autocomplete="organization" placeholder="Företag / organisation"></div>
+                    <div class="form-field"><label for="quote-email-sv">E-post</label><input id="quote-email-sv" name="email" type="email" autocomplete="email" placeholder="du@example.com" required></div>
+                    <div class="form-field"><label for="quote-phone-sv">Telefon</label><input id="quote-phone-sv" name="phone" type="tel" autocomplete="tel" placeholder="+41 ..."></div>
+                    <div class="form-field full"><label for="quote-process-sv">Process eller problem</label><input id="quote-process-sv" name="process" type="text" placeholder="Offerter, planering, rapportering, dokument..." required></div>
+                    <div class="form-field"><label for="quote-budget-sv">Budgetnivå</label><select id="quote-budget-sv" name="budget"><option>Vet inte ännu</option>
+                                <option>Under CHF 5k</option>
+                                <option>CHF 5k-15k</option>
+                                <option>CHF 15k-50k</option>
+                                <option>CHF 50k+</option></select></div>
+                    <div class="form-field"><label for="quote-timeline-sv">Tidplan</label><select id="quote-timeline-sv" name="timeline"><option>Så snart som praktiskt möjligt</option>
+                                <option>Denna månad</option>
+                                <option>1-3 månader</option>
+                                <option>3+ månader</option></select></div>
+                    <div class="form-field full"><label for="quote-details-sv">Vad ska lösningen hjälpa er visualisera, automatisera eller besluta?</label><textarea id="quote-details-sv" name="details" placeholder="Beskriv kort arbetsflödet, nuvarande verktyg, datakällor och hur ett bra resultat ser ut."></textarea></div>
+                    <div class="form-status" aria-live="polite"></div>
+                    <div class="quote-form-actions"><button type="submit" class="btn btn-primary">Förbered offertmail</button><span class="quote-form-note">Föredrar du direkt e-post? <a href="mailto:per@schondell.com">per@schondell.com</a></span></div>
+                </form>
+            </div>
         </div>
     </div>
 </section>
@@ -1297,7 +1737,7 @@
     <div class="footer-inner">
         <span class="footer-copy">© 2025 SCHÖNDELL &nbsp;·&nbsp; Marly, Fribourg, Schweiz</span>
         <span class="footer-links">
-            <a href="index.html">EN</a> &nbsp;/&nbsp; <a href="index-sv.html">SV</a>
+            <a href="./">EN</a> &nbsp;/&nbsp; <a href="index-sv.html">SV</a> &nbsp;/&nbsp; <a href="index-de.html">DE</a> &nbsp;/&nbsp; <a href="index-fr.html">FR</a>
         </span>
     </div>
 </footer>
@@ -1343,6 +1783,32 @@
     }, { threshold: 0.5 });
 
     document.querySelectorAll('[data-count]').forEach(el => cntObs.observe(el));
+
+
+    /* ---- Quote form mail handoff ---- */
+    document.querySelectorAll('[data-quote-form]').forEach((form) => {
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const data = new FormData(form);
+            const name = String(data.get('name') || '').trim();
+            const email = String(data.get('email') || '').trim();
+            const process = String(data.get('process') || '').trim();
+            const status = form.querySelector('.form-status');
+            if (!name || !email || !process) {
+                if (status) status.textContent = form.dataset.required || 'Please complete the required fields.';
+                return;
+            }
+            const labels = (form.dataset.bodyLabels || '').split('|');
+            const values = ['name', 'company', 'email', 'phone', 'process', 'budget', 'timeline', 'details'];
+            const body = values.map((key, index) => {
+                const label = labels[index] || key;
+                return label + ': ' + (String(data.get(key) || '').trim() || '-');
+            }).join('\n');
+            const subject = encodeURIComponent(form.dataset.subject || 'Quote request');
+            window.location.href = 'mailto:per@schondell.com?subject=' + subject + '&body=' + encodeURIComponent(body);
+        });
+    });
+
 
     /* ---- Nav background on scroll ---- */
     window.addEventListener('scroll', () => {

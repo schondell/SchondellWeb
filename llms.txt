@@ -8,6 +8,7 @@ SCHONDELL implements AI agents for companies and builds practical AI solutions t
 - Swedish: https://schondell.com/index-sv.html
 - German: https://schondell.com/index-de.html
 - French: https://schondell.com/index-fr.html
+- .NET modernization: https://schondell.com/dotnet-modernization.html
 
 ## What SCHONDELL Does
 
@@ -17,6 +18,7 @@ SCHONDELL implements AI agents for companies and builds practical AI solutions t
 - Creates lean alternatives to oversized generic CRM or business systems.
 - Integrates existing tools, APIs, files, databases, and cloud services.
 - Provides senior software architecture and full-stack delivery.
+- Modernizes business-critical .NET Framework 4.x applications to .NET 10 through characterization tests, meaningful test coverage, TDD throughout the conversion, supervised AI assistance, and senior engineering review.
 
 ## Contact
 

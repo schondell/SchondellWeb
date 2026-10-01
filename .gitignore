@@ -1,0 +1,4 @@
+# Prospect/lead data — never commit
+marketing/
+# Build/export archives
+*.zip

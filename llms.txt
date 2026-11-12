@@ -19,6 +19,7 @@ SCHONDELL implements AI agents for companies and builds practical AI solutions t
 - Integrates existing tools, APIs, files, databases, and cloud services.
 - Provides senior software architecture and full-stack delivery.
 - Modernizes business-critical .NET Framework 4.x applications to .NET 10 through characterization tests, meaningful test coverage, TDD throughout the conversion, supervised AI assistance, and senior engineering review.
+- Creates digital content: website copy, product pages, blog articles, explainer visuals, short videos, and social posts, produced with an AI-assisted workflow in multiple languages.
 
 ## Contact
 
@@ -33,3 +34,4 @@ SCHONDELL implements AI agents for companies and builds practical AI solutions t
 - Tanto: https://tanto.ch/
 - SwissClassified: https://www.swissclassified.ch/
 - FJAMP: https://fjamp.com/
+- EasyPDF: https://easypdf.fjamp.com/

@@ -35,4 +35,3 @@ SCHONDELL implements AI agents for companies and builds practical AI solutions t
 - SwissClassified: https://www.swissclassified.ch/
 - FJAMP: https://fjamp.com/
 - MyMedicineDiary: https://mymedicinediary.app/
-- EasyPDF: https://easypdf.fjamp.com/

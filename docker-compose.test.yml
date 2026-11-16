@@ -1,0 +1,7 @@
+# Used only by test/site.test.sh. Same image, published on localhost, no external network.
+services:
+  schondell-web-test:
+    container_name: schondell-web-test
+    build: .
+    ports:
+      - "127.0.0.1:18089:80"

@@ -1,0 +1,15 @@
+*
+!index.html
+!index-sv.html
+!index-de.html
+!index-fr.html
+!dotnet-modernization.html
+!llms.txt
+!robots.txt
+!sitemap.xml
+!assets/**
+!nginx.conf
+marketing/
+*.zip
+.git
+test/

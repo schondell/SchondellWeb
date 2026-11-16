@@ -6,6 +6,8 @@ Static marketing site for schondell.com (`index.html`, the `index-sv/de/fr.html`
 
 The site runs as an nginx container named `schondell-web` on the Ubuntu server, attached to the existing external docker network `app_default`. A Cloudflare Tunnel container routes `schondell.com` and `www.schondell.com` to `http://schondell-web:80`. TLS and http to https are handled at Cloudflare's edge, so the container speaks plain HTTP only and publishes no host ports. `www` is redirected to the apex by nginx (301, path and query preserved).
 
+The http to https redirect is done in nginx, not at Cloudflare: cloudflared sets `X-Forwarded-Proto` to `http` or `https`, and nginx answers `301 https://schondell.com$request_uri` when it is `http` (`/healthz` is exempt). Requests without the header, such as the container healthcheck and the local test, are served as is. Cloudflare's zone-wide "Always Use HTTPS" is deliberately left off, because the zone also carries mail autodiscover hostnames that must not be redirected. `www` always redirects to the apex in a single hop.
+
 ## Update
 
 On the server:

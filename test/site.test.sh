@@ -88,6 +88,21 @@ echo "$headers" | tr -d '\r' | grep -qi '^location: https://schondell.com/index-
   || fail "www redirect Location wrong: $(echo "$headers" | grep -i '^location' || echo none)"
 pass
 
+# 4b. http->https redirect, driven by the X-Forwarded-Proto header set by the Cloudflare Tunnel.
+headers="$(curl -s -o /dev/null -D - -H 'X-Forwarded-Proto: http' "$BASE/index-sv.html?x=1")"
+echo "$headers" | head -n 1 | grep -q ' 301 ' || fail "X-Forwarded-Proto http did not return 301: $(echo "$headers" | head -n 1)"
+echo "$headers" | tr -d '' | grep -qi '^location: https://schondell.com/index-sv.html?x=1$'   || fail "http->https Location wrong: $(echo "$headers" | grep -i '^location' || echo none)"
+pass
+expect_status 301 /index-sv.html -H 'X-Forwarded-Proto: http'
+expect_status 200 /healthz -H 'X-Forwarded-Proto: http'
+expect_status 200 / -H 'X-Forwarded-Proto: https'
+expect_status 404 /no-such-page -H 'X-Forwarded-Proto: https'
+expect_status 200 / # no header: direct in-network request, served as is
+headers="$(curl -s -o /dev/null -D - -H 'Host: www.schondell.com' -H 'X-Forwarded-Proto: http' "$BASE/index-sv.html?x=1")"
+echo "$headers" | head -n 1 | grep -q ' 301 ' || fail "www with X-Forwarded-Proto http did not return 301: $(echo "$headers" | head -n 1)"
+echo "$headers" | tr -d '' | grep -qi '^location: https://schondell.com/index-sv.html?x=1$'   || fail "www http Location wrong (must be a single hop to the apex): $(echo "$headers" | grep -i '^location' || echo none)"
+pass
+
 # 5. Unknown path is a real 404 (no SPA rewrite).
 expect_status 404 /no-such-page
 

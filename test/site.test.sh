@@ -48,7 +48,9 @@ is_infra() {
 }
 while IFS= read -r f; do
   is_infra "$f" && continue
-  curl -s -o "$TMP/served" -w '%{http_code}' "$BASE/$f" > "$TMP/code"
+  url_path="/$f"
+  [ "$f" = "index.html" ] && url_path="/" # the home page lives at /; /index.html redirects (section 8)
+  curl -s -o "$TMP/served" -w '%{http_code}' "$BASE$url_path" > "$TMP/code"
   [ "$(cat "$TMP/code")" = "200" ] || fail "tracked site file /$f expected HTTP 200 but got $(cat "$TMP/code")"
   git show "HEAD:$f" > "$TMP/expected"
   case "$f" in
@@ -113,6 +115,28 @@ pass
 
 # 7. Cache headers.
 curl -s -o /dev/null -D - "$BASE/" | tr -d '\r' | grep -qi '^cache-control:.*no-cache' || fail "html lacks Cache-Control: no-cache"
+pass
+
+# 8. The home page has one URL: /index.html redirects to / in a single hop (Search Console reported
+# /index.html as an alternate page), and no page links to index.html.
+expect_redirect() { # description location [curl args...] url
+  local what="$1" expected="$2"; shift 2
+  local headers
+  headers="$(curl -s -o /dev/null -D - "$@" | tr -d '\r')"
+  echo "$headers" | head -n 1 | grep -q ' 301 ' || fail "$what did not return 301: $(echo "$headers" | head -n 1)"
+  echo "$headers" | grep -qix "location: $expected" \
+    || fail "$what Location wrong, expected $expected: $(echo "$headers" | grep -i '^location' || echo none)"
+  pass
+}
+expect_redirect "/index.html" "https://schondell.com/" "$BASE/index.html"
+expect_redirect "/index.html?x=1" "https://schondell.com/?x=1" "$BASE/index.html?x=1"
+expect_redirect "www /index.html" "https://schondell.com/" -H 'Host: www.schondell.com' "$BASE/index.html"
+expect_redirect "http /index.html" "https://schondell.com/" -H 'X-Forwarded-Proto: http' "$BASE/index.html"
+expect_redirect "www http /index.html?x=1" "https://schondell.com/?x=1" -H 'Host: www.schondell.com' -H 'X-Forwarded-Proto: http' "$BASE/index.html?x=1"
+expect_status 200 /index-sv.html -H 'X-Forwarded-Proto: https'
+if git ls-files '*.html' | xargs grep -l 'href="\(\./\)\?index\.html' ; then
+  fail "a page links to index.html instead of /"
+fi
 pass
 
 echo "PASS: $PASSED checks passed"

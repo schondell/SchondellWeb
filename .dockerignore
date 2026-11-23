@@ -7,6 +7,8 @@
 !llms.txt
 !robots.txt
 !sitemap.xml
+!favicon.ico
+!apple-touch-icon.png
 !assets/**
 !nginx.conf
 marketing/

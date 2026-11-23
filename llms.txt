@@ -34,4 +34,6 @@ SCHONDELL implements AI agents for companies and builds practical AI solutions t
 - Tanto: https://tanto.ch/
 - SwissClassified: https://www.swissclassified.ch/
 - FJAMP: https://fjamp.com/
+- Schöndell Books: https://books.schondell.com/ (digital and paperback books, incl. a restored 1910 household book of magic)
+- Sheet Coach: https://course.schondell.com/ (interactive spreadsheet course in the browser)
 - MyMedicineDiary: https://mymedicinediary.app/
